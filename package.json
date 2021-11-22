@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/luisberto99/Teoria_Ejercicio_1/issues"
   },
-  "homepage": "https://github.com/luisberto99/Teoria_Ejercicio_1#readme"
+  "homepage": "https://github.com/luisberto99/Teoria_Ejercicio_1#readme",
+  "dependencies": {
+    "chart.js": "^3.6.0"
+  }
 }
