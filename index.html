@@ -26,28 +26,46 @@
 
             //TODO VERIFICAR QUE TODOS LOS CAMPOS SEAN VALIDOS
 
-            console.log(calculoPoplacion(numeroAnhos, poblacionMasculina, natalidadMasculina, mortalidadMasculina));
-            console.log(poblacion);
+            calculoPoplacionMasc(numeroAnhos, poblacionMasculina, natalidadMasculina, mortalidadMasculina);
+            calculoPoplacionFem(numeroAnhos,poblacionFemenina, natalidadFemenina, mortalidadFemenina)
             numNacimientos = poblacionMasculina * natalidadMasculina + poblacionFemenina * natalidadFemenina;
             //console.log(calculoFecundidad(numNacimientos, poblacionFertil));
             const labels = [];
-            for(let i=1;i<=poblacion.length;i++){
+            for(let i=1;i<=numeroAnhos;i++){
                 labels.push(i)
             }
             
             const data = {
                 labels:labels,
                 datasets: [{
-                  label: 'Grafica de Poblacion simulada',
-                  backgroundColor: 'rgb(255, 99, 132)',
-                  borderColor: 'rgb(255, 99, 132)',
-                  data: poblacion,
-                }]
+                        label: 'Grafica de Poblacion Masculina',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: poblacion,
+                    },
+                    {
+                        label: 'Grafica de Poblacion Femenina',
+                        backgroundColor: 'rgb(255, 5, 236)',
+                        borderColor: 'rgb(255, 5, 236)',
+                        data: poblacionFem, 
+                    }
+                ]
             };
             const config = {
                 type: 'line',
                 data: data,
-                options: {}
+                options: {
+                  responsive: true,
+                  plugins: {
+                    legend: {
+                      position: 'top',
+                    },
+                    title: {
+                      display: true,
+                      text: 'Chart.js Line Chart'
+                    }
+                  }
+                },
             };
             const myChart = new Chart(
             document.getElementById('myChart'),
@@ -56,13 +74,24 @@
         }   
     </script>
     <script>
-        function calculoPoplacion(n, p, tasa_nat, tasa_mort) {
+        function calculoPoplacionMasc(n, p, tasa_nat, tasa_mort) {
             if (n == 0) {
                 return p;
             } else {
-                anhoAnterior = calculoPoplacion(n - 1, p, tasa_nat, tasa_mort);
+                anhoAnterior = calculoPoplacionMasc(n - 1, p, tasa_nat, tasa_mort);
                 poblacionActual = Math.round(anhoAnterior + anhoAnterior * tasa_nat - anhoAnterior * tasa_mort);
                 poblacion.push(poblacionActual);
+            
+                return poblacionActual;
+            }
+        }
+        function calculoPoplacionFem(n, p, tasa_nat, tasa_mort) {
+            if (n == 0) {
+                return p;
+            } else {
+                anhoAnterior = calculoPoplacionFem(n - 1, p, tasa_nat, tasa_mort);
+                poblacionActual = Math.round(anhoAnterior + anhoAnterior * tasa_nat - anhoAnterior * tasa_mort);
+                poblacionFem.push(poblacionActual);
             
                 return poblacionActual;
             }
