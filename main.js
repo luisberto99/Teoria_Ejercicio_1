@@ -1,4 +1,5 @@
 let poblacion = [];
+let poblacionFem = [];
 
 function calcular() {
     poblacion = [];
@@ -32,5 +33,6 @@ function calculoPoplacion(n, p, tasa_nat, tasa_mort) {
 }
 
 function calculoFecundidad(numNacimientos, pf) {
+    //TODO CALCULAR POR AÑO
     return numNacimientos / pf * 10;
 }
