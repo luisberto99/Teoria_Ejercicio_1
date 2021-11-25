@@ -61,6 +61,25 @@ function calcular() {
     numMuertesTotal = [];
     tasaFecundidad = [];
     labels = [];
+    var tableHTML = `
+        <tr>
+            <th rowspan="2">Año</th>
+            <th colspan="2">Poblacion Masculina</th>
+            <th colspan="2">Poblacion Femenina</th>
+        </tr>
+        <tr>
+            <th>Nacimientos masculinas</th>
+            <th>Muertes Masculinas</th>
+            <th>Nacimientos Femeninos</th>
+            <th>Muertes Femeninas</th>
+        </tr>
+    `
+    var fecundidadHTML = `
+        <tr>
+            <th>Año</th>
+            <th>Tasa de fecundidad</th>
+        </tr>
+    `
     var numeroAnhos = parseInt(document.getElementById("input_anhos").value)
     var poblacionMasculina = parseInt(document.getElementById("input_masc").value)
     var poblacionFemenina = parseInt(document.getElementById("input_fem").value)
@@ -107,6 +126,27 @@ function calcular() {
         data: poblacionTotal,
     });
     myChart.update();
+
+    for(i=0;i<numeroAnhos;i++){
+        tableHTML+= `
+            <tr>
+                <td>${i+1}</td>
+                <td>${numNacimientosMasc[i]}</td>
+                <td>${numMuertesMasc[i]}</td>
+                <td>${numNacimientosFem[i]}</td>
+                <td>${numMuertesFem[i]}</td>
+            </tr>
+        `
+        fecundidadHTML+=`
+            <tr>
+                <td>${i+1}</td>
+                <td>${tasaFecundidad[i].toFixed(2)}</td>
+            </tr>
+        `
+    }
+
+    document.getElementById('table_results').innerHTML=tableHTML
+    document.getElementById('fecundidad_results').innerHTML=fecundidadHTML
 
 }
 /* OBTENER DATOS DE POBLACION TOTAL */

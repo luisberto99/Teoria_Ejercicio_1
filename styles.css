@@ -1,3 +1,7 @@
 #formulario,#formulario2{
     background-color: aqua;
 }
+table,th,td{
+    border: 1px solid black !important; 
+    text-align: center;
+}
