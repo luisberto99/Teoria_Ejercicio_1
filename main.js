@@ -40,7 +40,7 @@ const config = {
             },
             title: {
                 display: true,
-                text: 'Chart.js Line Chart'
+                text: 'Gráfico de población'
             }
         }
     },
@@ -76,14 +76,14 @@ function calcular() {
     calculoPoplacionFem(numeroAnhos, poblacionFemenina, natalidadFemenina, mortalidadFemenina)
     numNacimientos = poblacionMasculina * natalidadMasculina + poblacionFemenina * natalidadFemenina;
 
-    tasaFecundidad(); /* CALULO DE TASA DE FECUNDIDAD */
     //console.log(calculoFecundidad(numNacimientos, poblacionFertil));
     for (let i = 1; i <= numeroAnhos; i++) {
         labels.push(i)
     }
 
-    /* OBTENER DATOS DE POBLACION TOTAL */
     getPoblacionTotal();
+    calculoFecundidad(poblacionFertil); /* CALULO DE TASA DE FECUNDIDAD */
+    /* OBTENER DATOS DE POBLACION TOTAL */
     myChart.data.labels = labels;
     myChart.data.datasets.pop();
     myChart.data.datasets.pop();
@@ -148,9 +148,10 @@ function calculoPoplacionFem(n, p, tasa_nat, tasa_mort) {
 }
 
 /* CALULO DE TASA DE FECUNDIDAD */
-function calculoFecundidad(numNacimientos, pf) {
+function calculoFecundidad(pf) {
     //TODO CALCULAR POR AÑO
     for (let i = 0; i < labels.length; i++) {
         tasaFecundidad[i] = numNacimientosTotal[i] / pf * 10;
     }
+    console.log(tasaFecundidad);
 }
