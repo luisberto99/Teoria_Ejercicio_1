@@ -108,19 +108,19 @@ function calcular() {
     myChart.data.datasets.pop();
     myChart.data.datasets.pop();
     myChart.data.datasets.push({
-        label: 'Grafica de Poblacion Masculina',
+        label: 'Gráfica de Población Masculina',
         backgroundColor: 'rgb(25, 99, 132)',
         borderColor: 'rgb(25, 99, 132)',
         data: poblacionMasc,
     });
     myChart.data.datasets.push({
-        label: 'Grafica de Poblacion Femenina',
+        label: 'Gráfica de Población Femenina',
         backgroundColor: 'rgb(255, 5, 236)',
         borderColor: 'rgb(255, 5, 236)',
         data: poblacionFem,
     });
     myChart.data.datasets.push({
-        label: 'Grafica de Poblacion Total',
+        label: 'Gráfica de Población Total',
         backgroundColor: 'rgb(255, 100, 25)',
         borderColor: 'rgb(255, 100, 25)',
         data: poblacionTotal,
