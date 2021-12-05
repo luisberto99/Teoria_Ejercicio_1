@@ -11,6 +11,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="./fa/css/all.css">
+    <script>
+        window.onload = () =>{
+            calcular()
+        }
+    </script>
 </head>
 
 <body>
@@ -23,49 +28,49 @@
                         <button type="button" class="btn" id="help_button" data-toggle="modal" data-target="#helpModal" >
                             <i class="far fa-question-circle"></i>
                         </button>
-                    </span>
+                    </span><br>
 
                     <label for="input_masc" class="form-label">Población Masculina</label>
-                    <input type="number" id="input_masc" class="form-control"><br>
+                    <input type="number" value="1500" id="input_masc" class="form-control"><br>
 
                     <label for="input_fem" class="form-label">Población Femenina</label>
-                    <input type="number" id="input_fem" class="form-control"><br>
+                    <input type="number" value="2000" id="input_fem" class="form-control"><br>
 
                     <label for="tasa_mort_masc" class="form-label">Tasa de mortalidad Masculina</label>
                     <div class="input-group">
-                        <input type="number" id="tasa_mort_masc" class="form-control">
+                        <input value="3" type="number" id="tasa_mort_masc" class="form-control">
                         <span class="input-group-text">%</span>
                     </div><br>
 
 
                     <label for="tasa_mort_fem" class="form-label">Tasa de mortalidad Femenina</label>
                     <div class="input-group">
-                        <input type="number" id="tasa_mort_fem" class="form-control">
+                        <input value="5" type="number" id="tasa_mort_fem" class="form-control">
                         <span class="input-group-text">%</span>
                     </div><br>
 
 
                     <label for="tasa_nat_masc" class="form-label">Tasa de natalidad Masculina</label>
                     <div class="input-group">
-                        <input type="number" id="tasa_nat_masc" class="form-control">
+                        <input value="12" type="number" id="tasa_nat_masc" class="form-control">
                         <span class="input-group-text">%</span>
                     </div><br>
 
                     <label for="tasa_nat_fem" class="form-label">Tasa de natalidad Femenina</label>
                     <div class="input-group">
-                        <input type="number" id="tasa_nat_fem" class="form-control">
+                        <input value="15" type="number" id="tasa_nat_fem" class="form-control">
                         <span class="input-group-text">%</span>
                     </div><br>
 
 
                     <label for="num_mujeres_fertil" class="form-label">Numero de mujeres fertiles</label>
-                    <input type="number" id="num_mujeres_fertil" class="form-control"><br>
+                    <input value="1000" type="number" id="num_mujeres_fertil" class="form-control"><br>
                 </div><br>
                 <div id="formulario2" class="container">
                     <h2>Datos de simulación</h2>
 
                     <label for="input_anhos" class="form-label">Cantidad de años a simular</label>
-                    <input type="number" id="input_anhos" class="form-control"><br>
+                    <input value="5" type="number" id="input_anhos" class="form-control"><br>
                     <button class="btn btn-primary" onclick="calcular()">Calcular</button>
                 </div>
             </div>
@@ -105,16 +110,36 @@
                     Se calculará la población femenina y masculina, así como la cantidad de muertes
                     y nacimientos por sexo cada año. El simulador utiliza la siguiente función recursiva:
                 </p>
-                <p>
-                    H: Poblacion actual<br>
-                    TN: Tasa de natalidad<br>
-                    TM: Tasa de mortalidad<br>
-                    X: Año
-                </p>
                 <img src="./img/formula.PNG" alt="formula">
                 <p>
                     El mismo calculo se realiza para ambos sexos de la población. 
                 </p>
+                <p>
+                    Para el calculo de la tasa de fecundidad se utiliza la siguiente función:
+                </p>
+                <img src="./img/TF.PNG" alt="Tasa de fecunidad">
+                <h2>Entradas:</h2>
+                <p>
+                    Xₙ: Año<br>
+                    H: Poblacion actual<br>
+                </p>
+                <h2>Variables de estado:</h2>
+                <p>
+                    TN: Tasa de natalidad<br>
+                    TM: Tasa de mortalidad<br>
+                    MF: Número de mujeres fertiles
+                </p>
+                <h2>Salidas</h2>
+                <p>
+                    PT: Población total<br>
+                    PM: Población Masculina<br>
+                    PF: Población Femenina<br>
+                    NNₙ: Nacimientos totales por año<br>
+                    NMₙ: Nacimientos masculinos por año<br>
+                    NFₙ: Nacimientos femeninos por año<br>
+                    TFₙ: Tasa de fecundidad por año
+                </p>
+                
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
